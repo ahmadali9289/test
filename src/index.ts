@@ -4,7 +4,7 @@ import db from 'db'
 
 import {card, deck} from './controllers'
 import morganMiddleware from './middleware/morganMiddleware'
-import { DeckRoute } from './routes/index';
+import { routes } from './routes/index';
 
 const PORT = process.env.PORT || 3001
 
@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 app.use(morganMiddleware)
 
-app.use('/api', DeckRoute)
+app.use('/api', routes)
 
 app.get('/health-check', (req: Request, res: Response) => {
   res.send('Server is up and running')
@@ -23,7 +23,7 @@ app.get('/health-check', (req: Request, res: Response) => {
 
 app.use((error: ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
   console.log('Path: ', req.path)
-  console.error('Error: ', error)
+  console.error('Error ==> ', error)
   
   res.status(500).send(error)
 })
