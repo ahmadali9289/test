@@ -1,36 +1,24 @@
 import express, { Request, Response } from 'express'
+import bodyParser from 'body-parser'
 import db from 'db'
 
 import {card, deck} from './controllers'
 import morganMiddleware from './middleware/morganMiddleware'
+import { DeckRoute } from './routes/index';
 
 const PORT = process.env.PORT || 3001
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(morganMiddleware)
 
-app.post('/deck', async (req: Request, res: Response) => {
-  const { type, shuffle } = req.body
-  const result = await deck.creatDeck("FULL", false)
-  console.log(result)
-  res.send(result)
-})
+app.use('/api', DeckRoute)
 
-app.get('/deck/:deckId', async (req: Request, res: Response) => {
-  const result = await deck.openDeck(req.params.deckId)
-  console.log(result)
-  res.send(result)
-})
-
-app.get('/deck/:deckId/:drawCount', async (req: Request, res: Response) => {
-  const result = await card.drawDeck(req.params.deckId, parseInt(req.params.drawCount))
-  console.log(result)
-  res.send(result)
-})
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('hello')
+app.get('/health-check', (req: Request, res: Response) => {
+  res.send('Server is up and running')
 })
 
 app.listen(PORT, () => {
