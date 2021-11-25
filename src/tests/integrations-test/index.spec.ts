@@ -53,7 +53,7 @@ describe('status integration tests', () => {
     });
     it('OPEN a FULL card', async () => {
         await request(app)
-            .get('/deck/' + deck.deck_id)
+            .get('/api/deck/' + deck.deck_id)
             .set('Accept', 'application/json')
             .expect(StatusCodes.OK)
             .expect((res: request.Response) => {
@@ -62,7 +62,7 @@ describe('status integration tests', () => {
     });
     it('DRAW a card from deck', async () => {
         await request(app)
-            .get('/deck/' + deck.deck_id + '/1')
+            .get('/api/deck/' + deck.deck_id + '/1')
             .set('Accept', 'application/json')
             .expect(StatusCodes.OK)
             .expect((res: request.Response) => {
