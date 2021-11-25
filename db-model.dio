@@ -1,0 +1,37 @@
+<mxfile host="65bd71144e">
+    <diagram id="9DnwIcuPzlYIuHMUTORs" name="Page-1">
+        <mxGraphModel dx="525" dy="1493" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="2" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="deck" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="80" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="card" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="&lt;h1&gt;&lt;span&gt;deck&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/h1&gt;&lt;div&gt;&lt;span&gt;&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;- deckId: UUID&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;- type: enum ( FULL, SHORT )&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;- shuffled: boolean&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;- remaining: Int&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="140" width="180" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="&lt;h1&gt;&lt;span&gt;card&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/h1&gt;&lt;div&gt;&lt;span&gt;&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;- cardId: UUID&lt;br&gt;- deckId: UUID (FK)&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;- value: string&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;- suite: string&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;span style=&quot;font-size: 12px ; font-weight: 400&quot;&gt;- code: string&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="140" width="180" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+                    <mxGeometry x="220" y="-20" width="60" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="-&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="360" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="&lt;ul&gt;&lt;li&gt;&lt;span&gt;POST /deck ( create a deck )&lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;GET /deck/:deckId ( o&lt;/span&gt;pen a deck )&lt;br style=&quot;text-align: center&quot;&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;text-align: center&quot;&gt;GET /deck/:deckId/:drawCount&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="310" width="250" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
