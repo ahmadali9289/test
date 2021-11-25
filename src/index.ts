@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'
+import express, { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import db from 'db'
 
@@ -20,6 +20,14 @@ app.use('/api', DeckRoute)
 app.get('/health-check', (req: Request, res: Response) => {
   res.send('Server is up and running')
 })
+
+app.use((error: ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
+  console.log('Path: ', req.path)
+  console.error('Error: ', error)
+  
+  res.status(500).send(error)
+})
+
 
 app.listen(PORT, () => {
   console.log(`app runnin on port ${PORT}`)
