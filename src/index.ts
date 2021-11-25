@@ -2,10 +2,13 @@ import express, { Request, Response } from 'express'
 import db from 'db'
 
 import {card, deck} from './controllers'
+import morganMiddleware from './middleware/morganMiddleware'
 
 const PORT = process.env.PORT || 3001
 
 const app = express()
+
+app.use(morganMiddleware)
 
 app.post('/deck', async (req: Request, res: Response) => {
   const { type, shuffle } = req.body
