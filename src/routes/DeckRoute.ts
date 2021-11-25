@@ -18,7 +18,11 @@ router.post('/deck', async (req: Request, res: Response) => {
   })
   
   router.get('/deck/:deckId/:drawCount', async (req: Request, res: Response) => {
-    const result = await card.drawDeck(req.params.deckId, parseInt(req.params.drawCount))
+    const {drawCount} = req.params
+    if (!drawCount && parseInt(drawCount) <= 0 || parseInt(drawCount) >= 52) {
+        throw new Error("Cards to draw can only be between 1-51 at max")        
+    }
+    const result = await card.drawDeck(req.params.deckId, parseInt(drawCount))
     console.log(result)
     res.send(result)
   })
