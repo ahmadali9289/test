@@ -25,7 +25,7 @@ app.use((error: ErrorRequestHandler, req: Request, res: Response, next: NextFunc
   console.log('Path: ', req.path)
   console.error('Error ==> ', error)
   
-  res.status(500).send(error)
+  res.status(500).send({message: error})
 })
 
 
