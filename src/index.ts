@@ -5,6 +5,8 @@ import db from 'db'
 import {card, deck} from './controllers'
 import morganMiddleware from './middleware/morganMiddleware'
 import { routes } from './routes/index';
+import { errorHandler } from 'middleware/error.middleware'
+import { notFoundHandler } from 'middleware/not-found.middleware'
 
 const PORT = process.env.PORT || 3001
 
@@ -21,13 +23,15 @@ app.get('/health-check', (req: Request, res: Response) => {
   res.send('Server is up and running')
 })
 
-app.use((error: ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
-  console.log('Path: ', req.path)
-  console.error('Error ==> ', error)
+// app.use((error: ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
+//   console.log('Path: ', req.path)
+//   console.error('Error ==> ', error)
   
-  res.status(500).send({message: error})
-})
+//   res.status(500).send({message: error})
+// })
 
+app.use(errorHandler);
+app.use(notFoundHandler);
 
 app.listen(PORT, () => {
   console.log(`app runnin on port ${PORT}`)
