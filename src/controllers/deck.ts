@@ -1,18 +1,26 @@
+import express, { NextFunction, Request, Response } from 'express'
+
 import { IDeck } from 'services/deck';
 import {cardService, deckService} from '../services'
 import _ from 'lodash'
 import {v4 as uuidv4} from 'uuid'
 import { ICard } from 'services/card';
-import { shuffle } from 'utils';
+import { shuffled } from 'utils';
 import Logger from "../lib/logger";
 
 const suits = ["spades", "diamonds", "clubs", "hearts"];
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
+export interface IDeckInput {
+    type: string;
+    shuffle: boolean;
+}
 
-export const creatDeck = async (type: string, shuffled: boolean): Promise<IDeck | undefined> => {
+export const creatDeck = async (req: Request, res: Response): Promise<void> => {
+    console.log('BODY: ', req.body)
     let deck = new Array();
-
+    const { type, shuffle } = <IDeckInput>req.body
+    
     if (type == "FULL") {
 
         for(let i = 0; i < suits.length; i++)
@@ -26,15 +34,15 @@ export const creatDeck = async (type: string, shuffled: boolean): Promise<IDeck 
         
     }
     
-    const result: (IDeck | undefined) = await deckService.postDeck(type, shuffled)
+    const result: (IDeck | undefined) = await deckService.postDeck(type, shuffle)
 
     if (!result) {
         Logger.error("Could not create record");
         throw new Error("Could not create record");        
     }
 
-    if (shuffled) {
-        deck = shuffle(deck)
+    if (shuffle) {
+        deck = shuffled(deck)
     }
 
     if (result) {
@@ -61,11 +69,11 @@ export const creatDeck = async (type: string, shuffled: boolean): Promise<IDeck 
     }
     Logger.info("Result for create Deck is ready");
 
-    return result;
+    res.status(201).json(result);
 }
 
-export const openDeck = async (deckId: string): Promise<IDeck | undefined> => {
-    
+export const openDeck = async (req: Request, res: Response): Promise<void> => {
+    const { deckId } = <{ deckId: string }>req.params
     const result: (IDeck | undefined) = await deckService.getDeck(deckId)
 
     if (!result) {
@@ -78,5 +86,5 @@ export const openDeck = async (deckId: string): Promise<IDeck | undefined> => {
         _.assign(result, { cards: result_cards })
     }
     Logger.info("Result for create Deck is ready");
-    return result;
+    res.status(200).json(result);
 }

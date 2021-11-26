@@ -1,6 +1,6 @@
 import { IDeck } from "services/deck";
 
-export const shuffle = (deck: IDeck[]) => {
+export const shuffled = (deck: IDeck[]) => {
 	// for 1000 turns
 	// switch the values of two random cards
 	for (let i = 0; i < 1000; i++)
